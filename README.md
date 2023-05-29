@@ -16,24 +16,135 @@ know whether this package might be useful for them.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
+A flutter package for web & android and ios for easy upload image with or without to sever and handling error 
 ## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
+For android and ios
 ```dart
-const like = 'sample';
+import 'package:flutter/material.dart';
+import 'package:easyupload_image_toserver/easyupload_image_toserver_mob.dart';
+class Home extends StatelessWidget {
+  const Home({super.key});
+  @override
+  Widget build(BuildContext context) {
+    UploadImageforPhone upload = UploadImageforPhone();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+        title: const Text(
+          'test upload',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            Center(
+              child: MaterialButton(
+                color: Colors.blue,
+                onPressed: () {
+                  // for gallery
+                  upload.selectFromGallary();
+                  // for gcamallery
+                  upload.selectFromCam();
+                },
+                child: const Text('upload'),
+              ),
+            ),
+            Center(
+              child: MaterialButton(
+                color: Colors.blue,
+                onPressed: () {
+                  //upload to server just image
+                  upload.uploadToServerWithImageWithOnly(
+                      'https://example.net/testupload.php', //link api
+                      'file', // name of request image
+                      {} //header if exist in api
+                  );
+                  upload.uploadToServerWithImageWithBody(
+                      'https://example.net/testupload.php', //link api
+                      'file', // name of request image
+                      {"key": "value"}, //body of api
+                      {} //header if exist in api
+                  );
+                },
+                child: const Text('upload'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }}
+```
+
+for web 
+```dart 
+import 'package:easyupload_image_toserver/easyupload_image_toserver.dart';
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+  @override
+  Widget build(BuildContext context) {
+    UploadImageforWeb upload = UploadImageforWeb();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+        title: const Text(
+          'test upload',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            Center(
+              child: MaterialButton(
+                color: Colors.blue,
+                onPressed: () {
+                  // for gallery
+                  upload.selectedImageFromWeb();
+                },
+                child: const Text('upload'),
+              ),
+            ),
+            Center(
+              child: MaterialButton(
+                color: Colors.blue,
+                onPressed: () {
+                  //upload to server just image
+                  upload.uploadFileToServer(
+                      'https://example.net/testupload.php', //link api
+                      'file', // name of request image
+                      {} //header if exist in api
+                      );
+                  upload.uploadFileToServerWithBody(
+                      'https://example.net/testupload.php', //link api
+                      'file', // name of request image
+                      {"key": "value"}, //body of api
+                      {} //header if exist in api
+                      );
+                },
+                child: const Text('upload'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+our GitHub
+https://github.com/0maroo0/EasyUploadImage
+our channel
+https://www.youtube.com/@BemoCode
+our facebook
+https://www.facebook.com/BemoCode
